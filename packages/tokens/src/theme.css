@@ -1,0 +1,133 @@
+/**
+ * @jinq-kr/tokens — theme.css
+ *
+ * 시드 컬러: #2A6F97 (딥 페트롤블루) · 중립 틴트 40%
+ * OKLCH로 파생 — 색상(H)은 유지, 명도/채도만 역할별로 조정.
+ * 값 재현·재생성은 "시드 팔레트" 도구를 사용.
+ *
+ * 구조:
+ *   1) :root            — 라이트(기본) 값
+ *   2) prefers-color-scheme — OS가 다크면 따라감 (명시적 라이트 선택 시 제외)
+ *   3) [data-theme=dark]    — 명시적 다크 선택 (OS 설정보다 우선)
+ *   4) @theme inline        — Tailwind v4 유틸리티로 매핑 (bg-canvas, text-text 등)
+ */
+
+:root {
+  /* 중립 */
+  --canvas: oklch(0.985 0.002 238);
+  --surface: oklch(1 0.001 238);
+  --surface-sunken: oklch(0.95 0.004 238);
+  --text: oklch(0.19 0.008 238);
+  --text-muted: oklch(0.48 0.008 238);
+  --border: oklch(0.88 0.005 238);
+  --border-strong: oklch(0.72 0.006 238);
+
+  /* 브랜드 */
+  --accent: oklch(0.517 0.093 238);
+  --accent-hover: oklch(0.447 0.086 238);
+  --accent-subtle: oklch(0.95 0.026 238);
+
+  /* 상태 */
+  --success: oklch(0.55 0.096 148);
+  --warning: oklch(0.7 0.1 82);
+  --danger: oklch(0.55 0.126 27);
+
+  /* 색 배경 위에 올리는 텍스트 색 (WCAG AA 검증됨, Button 등에서 사용) */
+  --on-accent: oklch(1 0 0);
+  --on-success: oklch(1 0 0);
+  --on-warning: oklch(0.16 0 0);
+  --on-danger: oklch(1 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --canvas: oklch(0.16 0.004 238);
+    --surface: oklch(0.21 0.004 238);
+    --surface-sunken: oklch(0.13 0.004 238);
+    --text: oklch(0.96 0.005 238);
+    --text-muted: oklch(0.7 0.006 238);
+    --border: oklch(0.32 0.006 238);
+    --border-strong: oklch(0.44 0.007 238);
+
+    --accent: oklch(0.737 0.093 238);
+    --accent-hover: oklch(0.797 0.088 238);
+    --accent-subtle: oklch(0.26 0.03 238);
+
+    --success: oklch(0.72 0.09 148);
+    --warning: oklch(0.8 0.093 82);
+    --danger: oklch(0.68 0.116 27);
+
+    --on-accent: oklch(0.16 0 0);
+    --on-success: oklch(0.16 0 0);
+    --on-warning: oklch(0.16 0 0);
+    --on-danger: oklch(0.16 0 0);
+  }
+}
+
+:root[data-theme="dark"] {
+  --canvas: oklch(0.16 0.004 238);
+  --surface: oklch(0.21 0.004 238);
+  --surface-sunken: oklch(0.13 0.004 238);
+  --text: oklch(0.96 0.005 238);
+  --text-muted: oklch(0.7 0.006 238);
+  --border: oklch(0.32 0.006 238);
+  --border-strong: oklch(0.44 0.007 238);
+
+  --accent: oklch(0.737 0.093 238);
+  --accent-hover: oklch(0.797 0.088 238);
+  --accent-subtle: oklch(0.26 0.03 238);
+
+  --success: oklch(0.72 0.09 148);
+  --warning: oklch(0.8 0.093 82);
+  --danger: oklch(0.68 0.116 27);
+
+  --on-accent: oklch(0.16 0 0);
+  --on-success: oklch(0.16 0 0);
+  --on-warning: oklch(0.16 0 0);
+  --on-danger: oklch(0.16 0 0);
+}
+
+@theme inline {
+  /* 간격: 4px 배수 — Tailwind v4 기본값과 동일하지만 토큰으로 명시 고정 */
+  --spacing: 0.25rem;
+
+  /* 폰트: Pretendard 우선, 없으면 OS 기본 한글 폰트로 폴백 (별도 @font-face 로딩은 소비처 책임) */
+  --font-sans:
+    "Pretendard Variable", Pretendard, -apple-system, "Malgun Gothic",
+    system-ui, sans-serif;
+
+  /* 타이포 스케일: ~1.2–1.25 비율 */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+
+  /* 색 유틸리티 매핑 (bg-canvas, text-text-muted, border-border ...) */
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-on-accent: var(--on-accent);
+  --color-on-success: var(--on-success);
+  --color-on-warning: var(--on-warning);
+  --color-on-danger: var(--on-danger);
+}

@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@jinq-kr/tokens/theme.css";
+
+/* 워크스페이스 밖(packages/ui)의 소스는 자동 감지 범위 밖이라 명시적으로 스캔 대상에 추가 */
+@source "../../../packages/ui/src";
+
+body {
+  background: var(--canvas);
+}

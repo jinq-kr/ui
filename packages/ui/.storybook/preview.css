@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "@jinq-kr/tokens/theme.css";
+
+body {
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
